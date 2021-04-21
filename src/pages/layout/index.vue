@@ -3,7 +3,14 @@
     <el-row :gutter="20">
       <el-col :span="8">
         <HeaderView class="hidden-md-and-down"></HeaderView>
-        <NavView></NavView>
+        <suspense>
+          <template #default>
+             <NavView />
+          </template>
+          <template #fallback>
+             <div>加载中...</div>
+          </template>
+        </suspense>
       </el-col>
       <el-col :span="12">
         <MainView></MainView>
