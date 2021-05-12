@@ -8,8 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@kangc/v-md-editor": "^2.2.4",
+    "@types/js-cookie": "^2.2.6",
     "core-js": "^3.6.5",
     "element-plus": "^1.0.2-beta.40",
+    "js-cookie": "^2.2.1",
+    "ts-axios-new": "^0.1.5",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
