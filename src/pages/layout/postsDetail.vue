@@ -1,7 +1,7 @@
 <template>
   <el-card class="box-card" shadow="always">
-    <h1>{{data[0].title}}</h1>
-    <v-md-preview :text="htmlDecode(data[0].content)"></v-md-preview>
+    <h1>{{data.title}}</h1>
+    <v-md-preview :text="htmlDecode(data.content)"></v-md-preview>
   </el-card>
 </template>
 
@@ -18,7 +18,7 @@ export default defineComponent({
     // 获取文章详情
     let { loading, data, errMessage } = Request({
       method: "get",
-      url: `/apis/posts/${id}`,
+      url: `/v1/posts/${id}`,
     });
     return {
       data,

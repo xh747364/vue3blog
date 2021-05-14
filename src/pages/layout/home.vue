@@ -9,29 +9,44 @@
       </el-card>
     </template>
     <template #default>
-      <MainView v-for="(item) in data" :key="item.title" :postsItem="item" ></MainView>
+      <MainView
+        v-for="item in data"
+        :key="item.title"
+        :postsItem="item"
+      ></MainView>
+      <el-pagination background layout="prev, pager, next" :total="data.length"></el-pagination>
     </template>
   </el-skeleton>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
 import MainView from "./components/main.vue";
-import { Request } from "../../hooks/useRequest"
+import { Request } from "../../hooks/useRequest";
+import { PostsGet } from "@/interface/Request";
 export default defineComponent({
   name: "layout",
   components: {
     MainView,
   },
   setup() {
-    let {loading, data, errMessage} = Request({
-      method: 'get',
-      url: '/apis/posts'
-    })
+    let { loading, data, errMessage } = Request<PostsGet>({
+      method: "get",
+      url: "/v1/posts",
+      data: {
+        page: 0,
+      },
+    });
     return {
       data,
       loading,
-      errMessage
+      errMessage,
     };
   },
 });
 </script>
+
+<style scoped>
+.el-pagination{
+  text-align: center;
+}
+</style>

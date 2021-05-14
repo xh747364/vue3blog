@@ -1,6 +1,39 @@
 <template>
-  <div class="content-wrap">
-    <el-row :gutter="10">
+  <div class="content-wrap common-layout">
+    <el-container>
+      <el-container>
+        <el-aside>
+          <HeaderView class="hidden-md-and-down"></HeaderView>
+          <suspense>
+            <template #default>
+              <NavView />
+            </template>
+            <template #fallback>
+              <div>加载中...</div>
+            </template>
+          </suspense>
+        </el-aside>
+        <el-main>
+          <router-view />
+          <el-footer>
+            <p>
+              © 2019 — 2021
+              <el-divider direction="vertical"></el-divider>
+              <i class="fa fa-user"></i>
+              记昨日书
+            </p>
+            <p>
+              <i class="fa fa-eye"></i>
+              总访问量 14972
+              <el-divider direction="vertical"></el-divider>
+              <a href="https://beian.miit.gov.cn"  target="_blank">京ICP备2021014015号-1</a>
+            </p>
+          </el-footer>
+        </el-main>
+        
+      </el-container>
+    </el-container>
+    <!-- <el-row :gutter="10">
       <el-col :span="5">
         <HeaderView class="hidden-md-and-down"></HeaderView>
         <suspense>
@@ -15,7 +48,7 @@
       <el-col :span="19">
         <router-view />
       </el-col>
-    </el-row>
+    </el-row> -->
   </div>
 </template>
 <script lang="ts">
@@ -29,10 +62,14 @@ export default defineComponent({
   },
 });
 </script>
-<style>
+<style scoped>
 .content-wrap {
   max-width: 1200px;
   width: 90%;
   margin: 0 auto;
+}
+.el-footer{
+  margin-top: 30px;
+  text-align: center;
 }
 </style>

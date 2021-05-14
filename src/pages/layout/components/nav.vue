@@ -95,7 +95,7 @@
           </div>
         </section>
 
-        <div class="back-to-top" style="">
+        <div class="back-to-top back-to-top-on">
           <i class="fa fa-arrow-up"></i>
           <span id="scrollpercent"><span>0</span>%</span>
         </div>
@@ -122,7 +122,6 @@ export default defineComponent({
       { name: "搜索", icon: "menu-item-icon fa fa-search fa-fw" },
     ];
     const routerList = ref<NavList[]>(navList);
-    
     return {
       routerList,
     };
@@ -210,5 +209,6 @@ export default defineComponent({
 
 .sidebar-inner{
   background: #fff;
+  padding: 20px 10px;
 }
 </style>

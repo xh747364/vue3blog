@@ -18,7 +18,12 @@
         </span>
       </el-col>
     </el-row>
-    <el-button plain class="posts-btn"><a :href="'detail/'+postsItem._id">阅读全文</a></el-button>
+    <el-row>{{postsItem.desc}}</el-row>
+    <el-button plain class="posts-btn" >
+      <el-link :underline="false" :href="'detail/'+postsItem._id">
+        阅读全文
+      </el-link>
+    </el-button>
   </el-card>
 </template>
 <script lang="ts">
@@ -42,10 +47,6 @@ export default defineComponent({
     color: #999;
     line-height: 1.5;
     margin-bottom: 30px;
-  }
-
-  .second-title span{
-    margin-right: 10px;
   }
 
   .second-title a{

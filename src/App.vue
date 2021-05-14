@@ -14,21 +14,6 @@
   });
 </script>
 <style>
-  html,
-  body,
-  div,
-  p,
-  ul,
-  li,h1,h2,h3,h4,h5,h6 {
-    margin: 0;
-    padding: 0;
-  }
-  ul,li{
-    list-style: none;
-  }
-  body{
-    background: #f5f7f9;
-  }
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

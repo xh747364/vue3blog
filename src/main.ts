@@ -12,7 +12,7 @@ import '@kangc/v-md-editor/lib/style/preview.css';
 import '@kangc/v-md-editor/lib/style/base-editor.css';
 import '@kangc/v-md-editor/lib/theme/style/github.css';
 import githubTheme from '@kangc/v-md-editor/lib/theme/github.js';
-
+import './assets/css/main.css'
 VMdPreview.use(githubTheme);
 
 const app = createApp(App)
