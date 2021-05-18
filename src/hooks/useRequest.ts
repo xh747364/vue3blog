@@ -4,36 +4,39 @@ import { reactive, ToRefs, toRefs } from "@vue/reactivity"
 import { AxiosError, AxiosResponse } from 'axios';
 import { PostsGet } from '../interface/Request';
 
-export const Request = <T>({method, url, data}: R<T>): ToRefs => {
+export const Request = <T>({ method, url, data, params }: R<T>): ToRefs => {
 
-    const dataResult: dataResult = reactive({
-        loading: true,
-        data: null,
-        errMessage: ''
-    })
+	const dataResult: dataResult = reactive({
+		loading: true,
+		data: null,
+		errMessage: ''
+	})
 
-    const params: R<PostsGet> = {
-        url: url,
-        method: method,
-    }
+	const paramsData: R<PostsGet> = {
+		url: url,
+		method: method,
+	}
 
-    if(method == "get"){
-        params['params'] = data
-    }else{
-        params['data'] = data
-    }
+	if (method == "get") {
+		paramsData['params'] = params
+	} else {
+		paramsData['data'] = data
+	}
 
-    http.request(params)
-    .then((res: AxiosResponse) => {
-        dataResult.loading = false;
-        dataResult.data = res.data.data;
-    })
-    .catch((err: AxiosError) => {
-        dataResult.loading = false;
-        dataResult.errMessage = err.message;
-    })
+	http.request(paramsData)
+		.then((res: AxiosResponse) => {
+			setTimeout(() => {
+				dataResult.loading = false;
+				dataResult.data = res.data;
+			}, 2000)
+			console.log(dataResult.loading)
+		})
+		.catch((err: AxiosError) => {
+			dataResult.loading = false;
+			dataResult.errMessage = err.message;
+		})
 
-    return {
-        ...toRefs(dataResult)
-    }
+	return {
+		...toRefs(dataResult)
+	}
 }

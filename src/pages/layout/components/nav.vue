@@ -2,93 +2,74 @@
   <div class="nav-wrap">
     <div class="header-inner">
       <div class="site-brand-wrapper">
-        <a class="site-title" href="/">谢欢</a>
+        <a class="site-title"
+           href="/">谢欢</a>
         <p>山有木兮卿有意，昨夜星辰恰似你</p>
       </div>
       <div class="menu">
         <ul>
-          <li
-            :class="{ active: item.active }"
-            v-for="(item, index) in routerList"
-            :key="index"
-          >
-            <a href="/"
-              ><i class="post-meta-item-icon" :class="item.icon"></i
-              >{{ item.name }}</a
-            >
+          <li :class="{ active: item.active == route.name }"
+              v-for="(item, index) in routerList"
+              :key="index">
+            <a :href="'/' + item.active"><i class="post-meta-item-icon"
+                 :class="item.icon"></i>{{ item.name }} {{item.active}}</a>
           </li>
         </ul>
       </div>
     </div>
-    <el-affix>
+    <el-affix v-if="!loading">
       <div class="sidebar-inner">
         <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
-          <div class="site-overview" style="max-height: 809px">
-            <div
-              class="site-author motion-element"
-              itemprop="author"
-              itemscope=""
-              itemtype="http://schema.org/Person"
-            >
-              <p class="site-author-name" itemprop="name">谢欢</p>
-              <p class="site-description motion-element" itemprop="description">
+          <div class="site-overview"
+               style="max-height: 809px">
+            <div class="site-author motion-element"
+                 itemprop="author"
+                 itemscope=""
+                 itemtype="http://schema.org/Person">
+              <p class="site-author-name"
+                 itemprop="name">谢欢</p>
+              <p class="site-description motion-element"
+                 itemprop="description">
                 日拱一卒，功不唐捐。
               </p>
             </div>
 
             <nav class="site-state motion-element">
               <div class="site-state-item site-state-posts">
-                <a href="/archives/">
-                  <span class="site-state-item-count">9</span>
+                <a href="/Archive">
+                  <span class="site-state-item-count">{{data.data.postsCount}}</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
 
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+              <div class="site-state-item site-state-categories"
+                   v-if="data">
+                <a href="/Th">
+                  <span class="site-state-item-count">{{data.data.tagsCount}}</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
 
               <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                <a href="/Tags">
+                  <span class="site-state-item-count">{{data.data.categoriesCount}}</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
             </nav>
 
-            <div
-              class="links-of-blogroll motion-element links-of-blogroll-inline"
-            >
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
                 <i class="fa fa-fw fa-link"></i>
                 友情链接
               </div>
               <ul class="links-of-blogroll-list">
-                <li class="links-of-blogroll-item">
-                  <a href="http://scuzivn.top/" title="羽毛" target="_blank"
-                    >羽毛</a
-                  >
-                </li>
-
-                <li class="links-of-blogroll-item">
-                  <a
-                    href="https://www.fengjinqi.com/"
-                    title="冯金琪"
-                    target="_blank"
-                    >冯金琪</a
-                  >
-                </li>
-
-                <li class="links-of-blogroll-item">
-                  <a
-                    href="https://www.nanbk.com/"
-                    title="南岸南"
-                    target="_blank"
-                    >南岸南</a
-                  >
+                <li class="links-of-blogroll-item"
+                    v-for="item in data.data.friendLink"
+                    :key="item._id">
+                  <a :href="item.link"
+                     :title="item.title"
+                     target="_blank">{{item.title}}</a>
                 </li>
               </ul>
             </div>
@@ -104,29 +85,46 @@
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { useRoute } from 'vue-router'
+import { defineComponent, onMounted, ref } from 'vue'
+import { Request } from '@/hooks/useRequest'
 interface NavList {
-  name: string;
-  icon: string;
-  active?: boolean;
+  name: string
+  icon: string
+  active?: string
 }
 export default defineComponent({
-  async setup() {
+  setup() {
     let navList: NavList[] = [
-      { name: "首页", icon: "menu-item-icon fa fa-fw fa-home", active: true },
-      { name: "关于", icon: "menu-item-icon fa fa-fw fa-user" },
-      { name: "标签", icon: "menu-item-icon fa fa-fw fa-tags" },
-      { name: "分类", icon: "menu-item-icon fa fa-fw fa-th" },
-      { name: "归档", icon: "menu-item-icon fa fa-fw fa-archive" },
-      { name: "相册", icon: "menu-item-icon fa fa-fw fa-photo" },
-      { name: "搜索", icon: "menu-item-icon fa fa-search fa-fw" },
-    ];
-    const routerList = ref<NavList[]>(navList);
+      { name: '首页', icon: 'menu-item-icon fa fa-fw fa-home', active: 'Home' },
+      {
+        name: '关于',
+        icon: 'menu-item-icon fa fa-fw fa-user',
+        active: 'About',
+      },
+      { name: '标签', icon: 'menu-item-icon fa fa-fw fa-tags', active: 'Tags' },
+      { name: '分类', icon: 'menu-item-icon fa fa-fw fa-th', active: 'Th' },
+      {
+        name: '归档',
+        icon: 'menu-item-icon fa fa-fw fa-archive',
+        active: 'Archive',
+      },
+    ]
+    const route = useRoute()
+    const routerList = ref<NavList[]>(navList)
+    const { loading, data, errMessage } = Request({
+      method: 'get',
+      url: '/v1/page-table',
+    })
     return {
       routerList,
-    };
+      route,
+      loading,
+      data,
+      errMessage,
+    }
   },
-});
+})
 </script>
 <style>
 .nav-wrap {
@@ -196,7 +194,7 @@ export default defineComponent({
 }
 
 .menu li.active a:after {
-  content: " ";
+  content: ' ';
   position: absolute;
   top: 50%;
   margin-top: -3px;
@@ -207,7 +205,7 @@ export default defineComponent({
   background-color: #bbb;
 }
 
-.sidebar-inner{
+.sidebar-inner {
   background: #fff;
   padding: 20px 10px;
 }

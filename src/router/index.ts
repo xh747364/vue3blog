@@ -1,21 +1,45 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../pages/layout/home.vue'
 import PostsDetail from '../pages/layout/postsDetail.vue'
+import About from '../pages/layout/about.vue'
+import Tags from '../pages/layout/tags.vue'
+import Th from '../pages/layout/th.vue'
+import Archive from '../pages/layout/archive.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/home'
+    redirect: '/Home'
   },
   {
-    path: '/home',
+    path: '/Home',
     name: 'Home',
-    component: ()=> Home,
+    component: () => Home,
   },
   {
-    path: '/detail/:id',
+    path: '/Detail/:id',
     name: 'PostsDetail',
-    component: ()=> PostsDetail,
+    component: () => PostsDetail,
+  },
+  {
+    path: '/About',
+    name: 'About',
+    component: () => About,
+  },
+  {
+    path: '/Tags',
+    name: 'Tags',
+    component: () => Tags,
+  },
+  {
+    path: '/Th',
+    name: 'Th',
+    component: () => Th,
+  },
+  {
+    path: '/Archive',
+    name: 'Archive',
+    component: () => Archive,
   },
 ]
 
