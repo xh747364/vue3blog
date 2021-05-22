@@ -16,8 +16,8 @@
 </template>
 <script lang="ts">
   import { defineComponent } from "vue";
-  import MainView from "./components/main.vue";
-  import { Request } from "../../hooks/useRequest";
+  import MainView from "../components/main.vue";
+  import { Request } from "@/hooks/useRequest";
   import { PostsGet } from "@/interface/Request";
   export default defineComponent({
     name: "layout",
