@@ -1,33 +1,35 @@
 <template>
-  <el-card class="box-card" shadow="always" v-if="data">
-    <h1>{{data.title}}</h1>
-    <v-md-preview :text="htmlDecode(data.content)"></v-md-preview>
+  <el-card class="box-card"
+           shadow="always"
+           v-if="data">
+    <h1>{{data.data.title}}</h1>
+    <v-md-preview :text="htmlDecode(data.data.content)"></v-md-preview>
   </el-card>
 </template>
 
 <script>
-import { Request } from "@/hooks/useRequest";
-import { defineComponent } from "@vue/runtime-core";
-import { htmlDecode } from "@/hooks/useHTMLAnalysis"
-import { useRoute } from "vue-router";
+import { Request } from '@/hooks/useRequest'
+import { defineComponent } from '@vue/runtime-core'
+import { htmlDecode } from '@/hooks/useHTMLAnalysis'
+import { useRoute } from 'vue-router'
 export default defineComponent({
   setup() {
     // 获取路由参数 id
-    const route = useRoute();
-    const { id } = route.params;
+    const route = useRoute()
+    const { id } = route.params
     // 获取文章详情
     let { loading, data, errMessage } = Request({
-      method: "get",
+      method: 'get',
       url: `/v1/posts/${id}`,
-    });
+    })
     return {
       data,
       loading,
       errMessage,
-      htmlDecode
-    };
+      htmlDecode,
+    }
   },
-});
+})
 </script>
 
 <style>

@@ -19,6 +19,26 @@ const routes: Array<RouteRecordRaw> = [
         path: 'Detail/:id',
         component: () => import('../pages/postsDetail/postsDetail.vue')
       },
+      {
+        path: 'About',
+        name: 'About',
+        component: () => import('../pages/about/about.vue')
+      },
+      {
+        path: 'Tags',
+        name: 'Tags',
+        component: () => import('../pages/tags/tags.vue')
+      },
+      {
+        path: 'Th',
+        name: 'Th',
+        component: () => import('../pages/th/th.vue')
+      },
+      {
+        path: 'Archive',
+        name: 'Archive',
+        component: () => import('../pages/archive/archive.vue')
+      },
     ]
   },
   // {

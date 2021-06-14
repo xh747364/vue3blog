@@ -25,11 +25,8 @@ export const Request = <T>({ method, url, data, params }: R<T>): ToRefs => {
 
 	http.request(paramsData)
 		.then((res: AxiosResponse) => {
-			setTimeout(() => {
-				dataResult.loading = false;
-				dataResult.data = res.data;
-			}, 2000)
-			console.log(dataResult.loading)
+			dataResult.loading = false;
+			dataResult.data = res.data;
 		})
 		.catch((err: AxiosError) => {
 			dataResult.loading = false;
