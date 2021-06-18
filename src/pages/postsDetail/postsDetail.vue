@@ -2,30 +2,32 @@
   <el-card class="box-card"
            shadow="always"
            v-if="data">
-    <h1>{{data.data.title}}</h1>
-    <v-md-preview :text="htmlDecode(data.data.content)"></v-md-preview>
+    <h1>{{data.title}}</h1>
+    <v-md-preview :text="htmlDecode(data.content)"></v-md-preview>
   </el-card>
 </template>
 
 <script>
-import { Request } from '@/hooks/useRequest'
-import { defineComponent } from '@vue/runtime-core'
+import { defineComponent, ref } from '@vue/runtime-core'
 import { htmlDecode } from '@/hooks/useHTMLAnalysis'
 import { useRoute } from 'vue-router'
+import { GetArchiveDetail } from '@/api'
 export default defineComponent({
   setup() {
     // 获取路由参数 id
     const route = useRoute()
     const { id } = route.params
-    // 获取文章详情
-    let { loading, data, errMessage } = Request({
-      method: 'get',
-      url: `/v1/posts/${id}`,
+
+    let loading = ref(true);
+    let data = ref()
+    GetArchiveDetail(id).then(res => {
+      data.value = res.data;
+    }).finally(() => {
+      loading.value = false;
     })
     return {
       data,
       loading,
-      errMessage,
       htmlDecode,
     }
   },

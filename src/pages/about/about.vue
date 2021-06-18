@@ -7,9 +7,7 @@
 </template>
 
 <script>
-  import { Request } from "@/hooks/useRequest";
   import { defineComponent } from "@vue/runtime-core";
-  import { htmlDecode } from "@/hooks/useHTMLAnalysis"
   export default defineComponent({
   });
 </script>

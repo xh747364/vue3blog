@@ -11,19 +11,18 @@
 </template>
 
 <script>
-import { Request } from '@/hooks/useRequest'
-import { defineComponent } from '@vue/runtime-core'
+import { GetTagsList } from '@/api';
+import { defineComponent, ref } from '@vue/runtime-core'
 export default defineComponent({
   setup() {
-    let { loading, data, errMessage } = Request({
-      url: '/v1/tags',
-      method: 'get',
+    let loading = ref(true);
+    let data = ref();
+    GetTagsList().then(res => {
+      data.value = res;
     })
-
     return {
       loading,
       data,
-      errMessage,
     }
   },
 })

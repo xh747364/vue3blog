@@ -3,7 +3,7 @@
     <transition name="slide-fade" :appear="true">
       <div class="header-inner">
         <div class="site-brand-wrapper">
-          <a class="site-title" href="/">谢欢</a>
+          <a class="site-title" href="/">记昨日书</a>
           <p>山有木兮卿有意，昨夜星辰恰似你</p>
         </div>
         <div class="menu">
@@ -34,7 +34,7 @@
                 itemscope=""
                 itemtype="http://schema.org/Person"
               >
-                <p class="site-author-name" itemprop="name">谢欢</p>
+                <p class="site-author-name" itemprop="name">记昨日书</p>
                 <p
                   class="site-description motion-element"
                   itemprop="description"
@@ -47,7 +47,7 @@
                 <div class="site-state-item site-state-posts">
                   <a href="/Archive">
                     <span class="site-state-item-count">{{
-                      data.data.postsCount
+                      data.postsCount
                     }}</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
@@ -56,7 +56,7 @@
                 <div class="site-state-item site-state-categories" v-if="data">
                   <a href="/Th">
                     <span class="site-state-item-count">{{
-                      data.data.tagsCount
+                      data.tagsCount
                     }}</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
@@ -65,7 +65,7 @@
                 <div class="site-state-item site-state-tags">
                   <a href="/Tags">
                     <span class="site-state-item-count">{{
-                      data.data.categoriesCount
+                      data.categoriesCount
                     }}</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
@@ -82,7 +82,7 @@
                 <ul class="links-of-blogroll-list">
                   <li
                     class="links-of-blogroll-item"
-                    v-for="item in data.data.friendLink"
+                    v-for="item in data.friendLink"
                     :key="item._id"
                   >
                     <a :href="item.link" :title="item.title" target="_blank">{{
@@ -106,7 +106,7 @@
 <script lang="ts">
 import { useRoute } from "vue-router";
 import { defineComponent, ref } from "vue";
-import { Request } from "@/hooks/useRequest";
+import { GetPageTable } from "@/api";
 interface NavList {
   name: string;
   icon: string;
@@ -128,19 +128,26 @@ export default defineComponent({
         icon: "menu-item-icon fa fa-fw fa-archive",
         active: "Archive",
       },
+      {
+        name: "绘画留言板",
+        icon: "menu-item-icon fa fa-fw fa-dashboard",
+        active: "MessageBoard",
+      },
     ];
     const route = useRoute();
     const routerList = ref<NavList[]>(navList);
-    const { loading, data, errMessage } = Request({
-      method: "get",
-      url: "/v1/page-table",
-    });
+    let loading = ref(true);
+    let data = ref();
+    GetPageTable().then(res => {
+      data.value = res.data
+    }).finally(() => {
+      loading.value = false;
+    })
     return {
       routerList,
       route,
       loading,
       data,
-      errMessage,
     };
   },
 });

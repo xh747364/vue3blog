@@ -35,43 +35,22 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../pages/th/th.vue')
       },
       {
+        path: 'Th/:title',
+        name: 'ThDetail',
+        component: () => import('../pages/th/thDetail.vue')
+      },
+      {
         path: 'Archive',
         name: 'Archive',
         component: () => import('../pages/archive/archive.vue')
       },
     ]
   },
-  // {
-  //   path: '/Detail/:id',
-  //   name: 'PostsDetail',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'Detail/:id',
-  //       component: () => import('../pages/postsDetail/postsDetail.vue')
-  //     },
-  //   ]
-  // },
-  // {
-  //   path: '/About',
-  //   name: 'About',
-  //   component: () => About,
-  // },
-  // {
-  //   path: '/Tags',
-  //   name: 'Tags',
-  //   component: () => Tags,
-  // },
-  // {
-  //   path: '/Th',
-  //   name: 'Th',
-  //   component: () => Th,
-  // },
-  // {
-  //   path: '/Archive',
-  //   name: 'Archive',
-  //   component: () => Archive,
-  // },
+  {
+    path: '/MessageBoard',
+    name: 'MessageBoard',
+    component: () => import('../pages/messageBoard/messageBoard.vue')
+  },
 ]
 
 const router = createRouter({
