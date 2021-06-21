@@ -21,9 +21,9 @@
               <span class="SiteRunningTime">该站点运行了： {{ runTimes }}</span>
             </p>
             <p>
-              <i class="fa fa-eye"></i>
-              总访问量 14972
-              <el-divider direction="vertical"></el-divider>
+              <!-- <i class="fa fa-eye"></i>
+              总访问量：14972
+              <el-divider direction="vertical"></el-divider> -->
               <a href="https://beian.miit.gov.cn" target="_blank"
                 >京ICP备2021014015号-1</a
               >
@@ -72,5 +72,10 @@ export default defineComponent({
 
 .el-aside {
   overflow: hidden;
+}
+
+.el-footer{
+  height: auto !important;
+  padding-bottom: 20px;
 }
 </style>

@@ -3,8 +3,7 @@ import { URLS } from './url';
 import { PageTable } from '@/interface/PageTable';
 import { ArchiveParams, ArchiveId, ArchiveItem } from '@/interface/Archive';
 import { AxiosPromise } from 'axios';
-import { ThTagsList, ThTagsListDetail } from '../interface/ThTags';
-import { RequestRes } from '@/interface/Request';
+import { ThTagsList } from '../interface/ThTags';
 
 //  获取统计数据
 export const GetPageTable = (): AxiosPromise<PageTable> => {
@@ -55,11 +54,18 @@ export const GetTagsList = (): AxiosPromise<ThTagsList> => {
 	})
 }
 
-// 标签列表
-export const GetTagsListDetail = (): AxiosPromise=> {
+// 标签列表详情
+export const GetTagsListDetail = (params: string | string[]): AxiosPromise => {
 	return http.request({
-		url: URLS.GetTagsDetail,
+		url: URLS.GetTagsDetail + params,
 		method: 'get'
 	})
 }
 
+// 归档列表
+export const GetArchives = (): AxiosPromise => {
+	return http.request({
+		url: URLS.GetArchives,
+		method: 'get'
+	})
+}

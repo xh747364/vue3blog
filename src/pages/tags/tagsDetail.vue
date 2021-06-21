@@ -1,7 +1,7 @@
 <template>
   <el-card class="box-card" shadow="always">
     <div class="th-title">
-      <h2>{{ data._id }} 分类</h2>
+      <h2>{{ data._id }} 标签</h2>
       <p>目前共计 {{ data.postsData.length }} 篇文章</p>
     </div>
     <ul class="th-wrap">
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { GetThListDetail } from "@/api";
+import { GetTagsListDetail } from "@/api";
 import { ThTagsDetail, ThTagsList } from "@/interface/ThTags";
 import { defineComponent, ref } from "@vue/runtime-core";
 import { useRoute, useRouter } from "vue-router";
@@ -34,7 +34,7 @@ export default defineComponent({
     const route = useRoute();
     const router = useRouter();
     const title = route.params.title;
-    GetThListDetail(title).then((res) => {
+    GetTagsListDetail(title).then((res) => {
       let result = res.data[0].postsData;
       result.map((x: ThTagsList) => {
         x.createDate = useFormatDate(x.createDate, 'yyyy-MM-dd');

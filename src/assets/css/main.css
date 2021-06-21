@@ -15,7 +15,7 @@ h6 {
 }
 body {
 	background: #f5f7f9;
-  line-height: 2;
+	line-height: 2;
 }
 .site-author-name {
 	margin: 0;
@@ -197,31 +197,54 @@ body {
 	text-overflow: ellipsis;
 }
 .back-to-top {
-  display: none;
-  margin: 20px -10px -20px;
-  background: #f5f7f9;
-  font-size: 12px;
-  opacity: 0.6;
-  cursor: pointer;
-  text-align: center;
-  transform: translateZ(0);
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0s;
+	display: none;
+	margin: 20px -10px -20px;
+	background: #f5f7f9;
+	font-size: 12px;
+	opacity: 0.6;
+	cursor: pointer;
+	text-align: center;
+	transform: translateZ(0);
+	transition-duration: 0.2s;
+	transition-timing-function: ease-in-out;
+	transition-delay: 0s;
 }
 .back-to-top:hover {
-  opacity: 0.8;
+	opacity: 0.8;
+}
+.second-title {
+	font-size: 12px;
+	color: #999;
+	line-height: 1.5;
+	margin-bottom: 30px;
+}
+
+.second-title a {
+	font-size: 12px;
+}
+
+.post-meta-item-icon {
+	margin-right: 3px;
+}
+
+.el-button.posts-btn {
+	margin-top: 40px;
+}
+
+.posts-h1 {
+	line-height: 1.5;
+	font-size: 22px;
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  .back-to-top {
-    display: none !important;
-  }
+	.back-to-top {
+		display: none !important;
+	}
 }
 @media (max-width: 767px) {
-  .back-to-top {
-    display: none !important;
-  }
+	.back-to-top {
+		display: none !important;
+	}
 }
 .back-to-top.back-to-top-on {
-  display: block;
+	display: block;
 }

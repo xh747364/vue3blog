@@ -1,8 +1,7 @@
 <template>
   <el-card class="box-card" shadow="always">
-    about
-    <!-- <h1>{{data.title}}</h1> -->
-    <!-- <v-md-preview :text="htmlDecode(data.content)"></v-md-preview> -->
+    <h1 class="about-title">关于我</h1>
+    CODING...
   </el-card>
 </template>
 
@@ -13,4 +12,9 @@
 </script>
 
 <style>
+.about-title{
+  text-align: center;
+  font-size: 22px;
+  padding-top: 20px;
+}
 </style>

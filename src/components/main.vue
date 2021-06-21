@@ -1,6 +1,6 @@
 <template>
   <el-card class="box-card" shadow="always">
-    <el-link :underline="false" >
+    <el-link :underline="false" :href="'detail/'+postsItem._id">
       <h1 class="posts-h1">{{ postsItem.title }}</h1>
     </el-link>
     <el-row>
@@ -40,28 +40,5 @@ export default defineComponent({
   .box-card{
     margin-bottom: 20px;
     text-align: center;
-  }
-
-  .second-title{
-    font-size: 12px;
-    color: #999;
-    line-height: 1.5;
-    margin-bottom: 30px;
-  }
-
-  .second-title a{
-    font-size: 12px;
-  }
-
-  .post-meta-item-icon{
-    margin-right: 3px;
-  }
-
-  .el-button.posts-btn{
-    margin-top: 40px;
-  }
-
-  .posts-h1{
-    line-height: 1.5;
   }
 </style>

@@ -30,6 +30,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('../pages/tags/tags.vue')
       },
       {
+        path: 'Tags/:title',
+        name: 'TagsDetail',
+        component: () => import('../pages/tags/tagsDetail.vue')
+      },
+      {
         path: 'Th',
         name: 'Th',
         component: () => import('../pages/th/th.vue')
