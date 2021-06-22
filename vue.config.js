@@ -6,14 +6,14 @@ module.exports={
                 target: 'http://localhost:2664',
                 changeOrigin: true,  //是否跨域
                 pathRewrite: {
-                    '^/v1': ''
+                    '^/v1': '/api'
                 }
             },
-            '/apis': {
+            '/api': {
                 target: 'http://blog.xhxiehuan.club:2664',
                 changeOrigin: true,  //是否跨域
                 pathRewrite: {
-                    '^/apis': ''
+                    '^/api': '/api'
                 }
             }
         }

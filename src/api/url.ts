@@ -10,7 +10,7 @@ export const URLS = {
     // 标签列表
     GetTagsList: '/tags/',
     // 标签详情
-    GetTagsDetail: 'posts/tagsCount/',
+    GetTagsDetail: '/posts/tagsCount/',
     // 归档列表
-    GetArchives: 'posts/archiveList/'
+    GetArchives: '/posts/archiveList/'
 }

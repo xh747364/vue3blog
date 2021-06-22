@@ -15,7 +15,7 @@ export class Interceptors {
 	constructor() {
 		this.instance = axios.create({
 			timeout: 10000,
-			baseURL: process.env.VUE_APP_URL
+			baseURL: '/api'//process.env.VUE_APP_URL
 		});
 	}
 	// 初始化拦截器
