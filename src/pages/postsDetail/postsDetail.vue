@@ -11,7 +11,7 @@
         <el-divider direction="vertical"></el-divider>
         <span>
           <i class="fa fa-folder-o post-meta-item-icon"></i>
-          分类与：
+          分类于：
           <el-link :underline="false" type="info" v-for="i in data.categories" :key="i._id">
             {{i}}
           </el-link>

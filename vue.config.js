@@ -1,6 +1,14 @@
-module.exports={
+module.exports = {
+    chainWebpack: config => {
+        config
+            .plugin('html')
+            .tap(args => {
+                args[0].title = '谢欢的个人主页-欢生活-欢空间'
+                return args
+            })
+    },
     devServer: {
-        host:'0.0.0.0',
+        host: '0.0.0.0',
         proxy: {
             '/v1': {
                 target: 'http://localhost:2664',
